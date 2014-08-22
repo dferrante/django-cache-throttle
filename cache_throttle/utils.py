@@ -37,7 +37,7 @@ def throttle(cache, key, decrement=1, maximum_stamina=10, regenerate_per_hour=10
     cache.set(
         key,
         (current_stamina, datetime.now()),
-        3600.0 * (maximum_stamina - current_stamina) / regenerate_per_hour
+        max(3600.0 * (maximum_stamina - current_stamina) / regenerate_per_hour, 10)
     )
     return current_stamina
 
